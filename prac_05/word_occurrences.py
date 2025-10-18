@@ -3,6 +3,8 @@ Word Occurrences
 Estimate: 25 minutes
 Actual:   (fill in after you finish)
 """
+
+
 def main():
     text = input("Text: ").strip()
     words = text.lower().split()
@@ -16,6 +18,7 @@ def main():
     width = max((len(word) for word in sorted_words), default=0)
     for word in sorted_words:
         print(f"{word:{width}} : {word_to_count[word]}")
+
 
 if __name__ == "__main__":
     main()
