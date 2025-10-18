@@ -1,9 +1,9 @@
 """
-Countries Data Processor
+Wimbledon Data Processor
 Estimate: 40 minutes
 Actual:   (fill in after you finish)
 
-Reads 'countries.csv' (UTF-8 with BOM) and prints:
+Reads 'wimbledon.csv' (UTF-8 with BOM) and prints:
 - Champion win counts
 - Countries of champions, alphabetically
 The CSV is expected to include headers with columns named
@@ -12,15 +12,13 @@ The CSV is expected to include headers with columns named
 """
 import csv
 
-FILENAME = "countries.csv"
-
+FILENAME = "wimbledon.csv"
 
 def read_rows(filename):
     with open(filename, "r", encoding="utf-8-sig", newline="") as f:
         reader = csv.reader(f)
         rows = list(reader)
     return rows
-
 
 def get_indexes(header):
     header_lower = [h.strip().lower() for h in header]
@@ -30,7 +28,6 @@ def get_indexes(header):
         return i_champ, i_country, True
     # Fallback to no-header format: Year, Country, Champion, Runner-up, Score
     return 2, 1, False
-
 
 def build_summaries(rows):
     header = rows[0]
@@ -47,7 +44,6 @@ def build_summaries(rows):
         champion_to_count[champion] = champion_to_count.get(champion, 0) + 1
     return champion_to_count, countries
 
-
 def main():
     rows = read_rows(FILENAME)
     champion_to_count, countries = build_summaries(rows)
@@ -59,7 +55,6 @@ def main():
     country_list = sorted(countries)
     print(f"These {len(country_list)} countries have won Wimbledon:")
     print(", ".join(country_list))
-
 
 if __name__ == "__main__":
     main()
